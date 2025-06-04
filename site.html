@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maps4Study - Novo Tema Conceitual</title>
+    <style>
+        /* Reset básico e fontes do sistema para leveza máxima */
+        body, h1, h2, h3, p, ul, li, a, input, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
+        }
+
+        body {
+            background-color: #f4f6f8; /* Um cinza claro para o fundo */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Cabeçalho */
+        .site-header {
+            background-color: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .site-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .site-title a {
+            font-size: 1.8rem;
+            color: #2c3e50; /* Azul escuro para o título */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .main-navigation ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-navigation li:not(:last-child) {
+            margin-right: 20px;
+        }
+
+        .main-navigation a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+        }
+
+        .main-navigation a:hover,
+        .main-navigation a.current-menu-item {
+            color: #3498db; /* Azul para hover/ativo */
+            border-bottom-color: #3498db;
+        }
+
+        .header-search {
+            display: flex;
+        }
+
+        .header-search input[type="search"] {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 20px 0 0 20px;
+            font-size: 0.9rem;
+            min-width: 200px;
+            outline: none;
+        }
+         .header-search input[type="search"]:focus {
+            border-color: #3498db;
+        }
+
+
+        .header-search button {
+            padding: 8px 15px;
+            border: 1px solid #3498db;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 20px 20px 0;
+            font-size: 0.9rem;
+            margin-left: -1px; /* Sobrepor a borda do input */
+        }
+        .header-search button:hover {
+            background-color: #2980b9;
+        }
+
+
+        /* Conteúdo Principal */
+        .site-content {
+            flex-grow: 1;
+            padding: 30px 0;
+        }
+
+        .content-area {
+            display: flex;
+            gap: 30px; /* Espaço entre conteúdo principal e sidebar */
+        }
+
+        .main-column {
+            flex: 3; /* Ocupa 3/4 do espaço se houver sidebar */
+        }
+        
+        .main-column.full-width {
+            flex: 1; /* Ocupa todo o espaço se não houver sidebar */
+        }
+
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* Grid de Mapas Mentais */
+        .mindmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .mindmap-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mindmap-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+        }
+
+        .mindmap-thumbnail img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .mindmap-content {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mindmap-title {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 8px;
+            text-decoration: none;
+        }
+         .mindmap-title a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .mindmap-title a:hover {
+            color: #3498db;
+        }
+
+
+        .mindmap-category {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+        .mindmap-category a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .mindmap-category a:hover {
+            text-decoration: underline;
+        }
+
+
+        .read-more-link {
+            display: inline-block;
+            margin-top: auto; /* Empurra para o final do card */
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .read-more-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Sidebar (Opcional) */
+        .sidebar {
+            flex: 1; /* Ocupa 1/4 do espaço */
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .widget {
+            margin-bottom: 25px;
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .widget ul {
+            list-style: none;
+        }
+
+        .widget li {
+            margin-bottom: 8px;
+        }
+
+        .widget a {
+            text-decoration: none;
+            color: #555;
+        }
+
+        .widget a:hover {
+            color: #3498db;
+        }
+
+        /* Rodapé */
+        .site-footer {
+            background-color: #2c3e50; /* Azul escuro para o rodapé */
+            color: #ecf0f1; /* Cor de texto clara */
+            padding: 25px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: auto; /* Garante que o rodapé fique no final */
+        }
+        .site-footer a {
+            color: #3498db; /* Azul para links no rodapé */
+            text-decoration: none;
+        }
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividade básica */
+        @media (max-width: 992px) {
+            .header-search input[type="search"] {
+                min-width: 150px;
+            }
+        }
+        @media (max-width: 768px) {
+            .site-header .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .main-navigation ul {
+                justify-content: center;
+                flex-wrap: wrap; /* Permite quebra de linha no menu */
+            }
+            .main-navigation li { margin: 5px 10px; }
+
+            .content-area {
+                flex-direction: column;
+            }
+            .mindmap-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        @media (max-width: 480px) {
+             .site-title a { font-size: 1.5rem; }
+             .header-search { width: 100%; }
+             .header-search input[type="search"] { flex-grow: 1; }
+             .mindmap-grid {
+                grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="site-title">
+                <a href="#">Maps4Study</a>
+            </div>
+            <nav class="main-navigation">
+                <ul>
+                    <li><a href="#" class="current-menu-item">Início</a></li>
+                    <li><a href="#">Categorias</a></li>
+                    <li><a href="#">ENEM</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+            <form class="header-search" role="search" method="get" action="#">
+                <input type="search" placeholder="Buscar mapas mentais..." name="s">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="site-content">
+        <div class="container">
+            <div class="content-area">
+                <!-- Coluna Principal de Conteúdo -->
+                <main class="main-column">
+                    <section id="latest-maps">
+                        <h2 class="section-title">Últimos Mapas Postados</h2>
+                        <div class="mindmap-grid">
+                            <!-- Exemplo de Card de Mapa Mental (Repetir para cada mapa) -->
+                            <article class="mindmap-card">
+                                <div class="mindmap-thumbnail">
+                                    <a href="#">
+                                        <img src="https://placehold.co/600x400/3498db/ffffff?text=Mapa+Mental+1" alt="Nome do Mapa Mental 1">
+                                    </a>
+                                </div>
+                                <div class="mindmap-content">
+                                    <h3 class="mindmap-title"><a href="#">Letramento Digital - Conceitos Essenciais</a></h3>
+                                    <p class="mindmap-category">Categoria: <a href="#">ENEM</a>, <a href="#">Tecnologia</a></p>
+                                    <!-- Poderia ter um pequeno resumo aqui -->
+                                    <a href="#" class="read-more-link">Ver Mapa Completo &rarr;</a>
+                                </div>
+                            </article>
+
+                            <article class="mindmap-card">
+                                <div class="mindmap-thumbnail">
+                                     <a href="#">
+                                        <img src="https://placehold.co/600x400/2ecc71/ffffff?text=Mapa+Mental+2" alt="Nome do Mapa Mental 2">
+                                    </a>
+                                </div>
+                                <div class="mindmap-content">
+                                    <h3 class="mindmap-title"><a href="#">Gastrite: Causas, Sintomas e Tratamento</a></h3>
+                                    <p class="mindmap-category">Categoria: <a href="#">Saúde</a>, <a href="#">Biologia</a></p>
+                                    <a href="#" class="read-more-link">Ver Mapa Completo &rarr;</a>
+                                </div>
+                            </article>
+
+                            <article class="mindmap-card">
+                                <div class="mindmap-thumbnail">
+                                     <a href="#">
+                                        <img src="https://placehold.co/600x400/e74c3c/ffffff?text=Mapa+Mental+3" alt="Nome do Mapa Mental 3">
+                                    </a>
+                                </div>
+                                <div class="mindmap-content">
+                                    <h3 class="mindmap-title"><a href="#">Capitalismo Comercial e Grandes Navegações</a></h3>
+                                    <p class="mindmap-category">Categoria: <a href="#">História</a></p>
+                                    <a href="#" class="read-more-link">Ver Mapa Completo &rarr;</a>
+                                </div>
+                            </article>
+                             <article class="mindmap-card">
+                                <div class="mindmap-thumbnail">
+                                     <a href="#">
+                                        <img src="https://placehold.co/600x400/f39c12/ffffff?text=Mapa+Mental+4" alt="Nome do Mapa Mental 4">
+                                    </a>
+                                </div>
+                                <div class="mindmap-content">
+                                    <h3 class="mindmap-title"><a href="#">Revolução Industrial: Fases e Impactos</a></h3>
+                                    <p class="mindmap-category">Categoria: <a href="#">História</a>, <a href="#">Sociologia</a></p>
+                                    <a href="#" class="read-more-link">Ver Mapa Completo &rarr;</a>
+                                </div>
+                            </article>
+                            <!-- Fim do Exemplo de Card -->
+                        </div>
+                    </section>
+                </main>
+
+                <!-- Sidebar (Opcional) -->
+                <aside class="sidebar">
+                    <div class="widget">
+                        <h3 class="widget-title">Categorias Populares</h3>
+                        <ul>
+                            <li><a href="#">ENEM (Todos)</a></li>
+                            <li><a href="#">Matemática</a></li>
+                            <li><a href="#">Química</a></li>
+                            <li><a href="#">Física</a></li>
+                            <li><a href="#">Biologia</a></li>
+                            <li><a href="#">História</a></li>
+                            <li><a href="#">Geografia</a></li>
+                            <li><a href="#">Filosofia</a></li>
+                            <li><a href="#">Sociologia</a></li>
+                            <li><a href="#">Português</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget">
+                        <h3 class="widget-title">Mapas Recentes</h3>
+                         <ul>
+                            <li><a href="#">Alterações Cromossômicas</a></li>
+                            <li><a href="#">Doenças Respiratórias</a></li>
+                            <li><a href="#">Ucrânia e Rússia</a></li>
+                        </ul>
+                    </div>
+                     <div class="widget">
+                        <h3 class="widget-title">Publicidade</h3>
+                        <div style="width:100%; height:250px; background-color:#e0e0e0; display:flex; align-items:center; justify-content:center; border-radius:4px; text-align:center; color:#777;">
+                            Espaço para Anúncio <br>(Ex: 300x250)
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2023-2025 Maps4Study. Todos os direitos reservados.</p>
+            <p>Desenvolvido com foco em aprendizado e leveza. <a href="#">Política de Privacidade</a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
