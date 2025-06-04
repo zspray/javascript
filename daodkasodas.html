@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Visual dos Biomas Brasileiros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f9ff; /* Light blue background */
+        }
+        .biome-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .biome-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .biome-icon {
+            font-size: 3rem; /* Increased icon size */
+            line-height: 1;
+        }
+        .section-title {
+            font-weight: 600;
+            color: #1e3a8a; /* Darker blue for section titles */
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #2563eb, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <header class="text-center mb-10">
+        <h1 class="text-4xl md:text-5xl font-bold gradient-text">🌿 Biomas Brasileiros 🌿</h1>
+        <p class="text-lg text-slate-600 mt-2">Um panorama visual da diversidade natural do Brasil.</p>
+    </header>
+
+    <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <!-- Amazônia -->
+        <article class="biome-card bg-gradient-to-br from-green-400 to-emerald-600 p-6 rounded-xl shadow-lg text-white">
+            <div class="flex items-center mb-4">
+                <span class="biome-icon mr-4">🌴</span>
+                <h2 class="text-3xl font-bold">Amazônia</h2>
+            </div>
+            <div>
+                <p><strong class="section-title text-green-100">Localização:</strong> Predomina no Norte e Centro-Oeste.</p>
+                <p><strong class="section-title text-green-100">Vegetação:</strong> Densa, verde o ano todo e perene. Destacam-se igapós, várzeas e terra firme.</p>
+                <p><strong class="section-title text-green-100">Clima:</strong> Equatorial, quente e úmido o inteiro.</p>
+                <p><strong class="section-title text-green-100">Fauna:</strong> Jaú, onça-pintada, arara-azul, jacaré-açu, jabuti.</p>
+                <p><strong class="section-title text-green-100">Importância:</strong> Maior biodiversidade do planeta; regula o clima e o ciclo da água.</p>
+            </div>
+        </article>
+
+        <!-- Cerrado -->
+        <article class="biome-card bg-gradient-to-br from-yellow-400 to-amber-600 p-6 rounded-xl shadow-lg text-white">
+            <div class="flex items-center mb-4">
+                <span class="biome-icon mr-4">🌾</span>
+                <h2 class="text-3xl font-bold">Cerrado</h2>
+            </div>
+            <div>
+                <p><strong class="section-title text-yellow-100">Localização:</strong> Predomina no Centro-Oeste e partes do Sudeste e Nordeste.</p>
+                <p><strong class="section-title text-yellow-100">Vegetação:</strong> Savana brasileira com gramíneas, arbustos e árvores retorcidas.</p>
+                <p><strong class="section-title text-yellow-100">Clima:</strong> Tropical sazonal, com estação seca e chuvosa.</p>
+                <p><strong class="section-title text-yellow-100">Fauna:</strong> Lobo-guará, tamanduá-bandeira, ema, tatu-canastra.</p>
+                <p><strong class="section-title text-yellow-100">Importância:</strong> Reserva de água e biodiversidade; sofre com o avanço agropecuário.</p>
+            </div>
+        </article>
+
+        <!-- Caatinga -->
+        <article class="biome-card bg-gradient-to-br from-orange-400 to-red-600 p-6 rounded-xl shadow-lg text-white">
+            <div class="flex items-center mb-4">
+                <span class="biome-icon mr-4">🌵</span>
+                <h2 class="text-3xl font-bold">Caatinga</h2>
+            </div>
+            <div>
+                <p><strong class="section-title text-orange-100">Localização:</strong> Exclusiva do Nordeste e norte de Minas Gerais.</p>
+                <p><strong class="section-title text-orange-100">Vegetação:</strong> Xerófila, com cactos e arbustos resistentes à seca.</p>
+                <p><strong class="section-title text-orange-100">Clima:</strong> Semiárido, quente e seco.</p>
+                <p><strong class="section-title text-orange-100">Fauna:</strong> Asa-branca, jararaca-do-sertão, tatu-peba, gambá.</p>
+                <p><strong class="section-title text-orange-100">Importância:</strong> Bioma exclusivo brasileiro; adaptado à seca.</p>
+            </div>
+        </article>
+
+        <!-- Mata Atlântica -->
+        <article class="biome-card bg-gradient-to-br from-teal-400 to-cyan-600 p-6 rounded-xl shadow-lg text-white">
+            <div class="flex items-center mb-4">
+                <span class="biome-icon mr-4">🌳</span>
+                <h2 class="text-3xl font-bold">Mata Atlântica</h2>
+            </div>
+            <div>
+                <p><strong class="section-title text-teal-100">Localização:</strong> Litoral do Nordeste ao Sul do Brasil.</p>
+                <p><strong class="section-title text-teal-100">Vegetação:</strong> Floresta densa, com grande diversidade de espécies.</p>
+                <p><strong class="section-title text-teal-100">Clima:</strong> Tropical úmido, com chuvas bem distribuídas.</p>
+                <p><strong class="section-title text-teal-100">Fauna:</strong> Mico-leão-dourado, tamanduá-mirim, bugio.</p>
+                <p><strong class="section-title text-teal-100">Importância:</strong> Riquíssima biodiversidade e importantes recursos hídricos.</p>
+            </div>
+        </article>
+
+        <!-- Pampa -->
+        <article class="biome-card bg-gradient-to-br from-lime-400 to-green-600 p-6 rounded-xl shadow-lg text-white">
+            <div class="flex items-center mb-4">
+                <span class="biome-icon mr-4">🌾</span> <!-- Reutilizando ícone, poderia ser mais específico -->
+                <h2 class="text-3xl font-bold">Pampa</h2>
+            </div>
+            <div>
+                <p><strong class="section-title text-lime-100">Localização:</strong> Exclusivo do Rio Grande do Sul.</p>
+                <p><strong class="section-title text-lime-100">Vegetação:</strong> Campos com gramíneas e arbustos.</p>
+                <p><strong class="section-title text-lime-100">Clima:</strong> Subtropical, com verões quentes e invernos frios.</p>
+                <p><strong class="section-title text-lime-100">Fauna:</strong> Veado-campeiro, tuco-tuco, graxaim-do-campo.</p>
+                <p><strong class="section-title text-lime-100">Importância:</strong> Bioma propício à pecuária; rico em espécies herbáceas.</p>
+            </div>
+        </article>
+
+        <!-- Pantanal -->
+        <article class="biome-card bg-gradient-to-br from-sky-400 to-blue-600 p-6 rounded-xl shadow-lg text-white">
+            <div class="flex items-center mb-4">
+                <span class="biome-icon mr-4">🦢</span>
+                <h2 class="text-3xl font-bold">Pantanal</h2>
+            </div>
+            <div>
+                <p><strong class="section-title text-sky-100">Localização:</strong> Mato Grosso, Mato Grosso do Sul, parte de Goiás e Bolívia.</p>
+                <p><strong class="section-title text-sky-100">Vegetação:</strong> Mosaico de cerrado, floresta estacional e áreas alagadas.</p>
+                <p><strong class="section-title text-sky-100">Clima:</strong> Tropical continental, com estação seca e cheia.</p>
+                <p><strong class="section-title text-sky-100">Fauna:</strong> Onça-pintada, ariranha, tuiuiú, capivara.</p>
+                <p><strong class="section-title text-sky-100">Importância:</strong> Maior planície alagável do mundo; refúgio de vida silvestre.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="text-center mt-12 py-6 border-t border-slate-300">
+        <p class="text-slate-600">Informações compiladas para visualização.</p>
+    </footer>
+
+</body>
+</html>
