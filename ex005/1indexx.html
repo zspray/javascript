@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificando Nacionalidade</title>
+</head>
+<body>
+    <h1>Verificador de Nacionalidade</h1>
+    <label for="nacionalidade">Digite sua nacionalidade:</label>
+    <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Ex: brasileiro, argentino">
+    <button onclick="verificarNacionalidade()">Verificar</button>
+    <p id="resultado">
+        
+    </p>
+    <script>
+        function verificarNacionalidade() {
+            var nacionalidade = document.getElementById("nacionalidade").value.toLowerCase();
+            if (nacionalidade === "brasileiro" || nacionalidade === "brasileira") {
+                document.getElementById("resultado").innerHTML = `<p> Resultado: Você é brasileiro(a). </p>`;
+            } else {
+                document.getElementById("resultado").innerHTML = `<p> Resultado: Você é estrangeiro(a). </p>`;
+            }
+        }
+    </script>    
+</body>
+</html>
