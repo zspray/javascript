@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgba(0, 0, 255, 0.555);
+            font: normal 15pt Arial, sans-serif;
+        }
+        header{
+            color:white;
+            text-align: center;
+
+        }
+        section{
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.356);
+        }
+        #texto{
+            text-align: center;
+            font-size: 18pt;
+            margin-bottom: 20px;
+        }
+        #resultado{
+            text-align: center;
+            font-size: 15pt;
+            margin-top: 20px;
+        }
+        #botão{
+            font-size: 12pt;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 55px;
+        }
+        #masculino, #feminino{
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        footer{
+            text-align: center;
+            font-size: 10pt;
+            margin-top: 10px;
+            color:white;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Verificador de Idade</h1>
+    </header>
+
+    <section>
+        <div id="texto">
+            <label for="anonascimento">Ano de Nascimento:
+                <input type="number" name="anonascimento" id="anonascimento" min="1900" max="2024" value="2000">
+            </label>
+            <p>Sexo:
+            <input type="radio" name="sexo" id="masculino" value="M" checked>
+            <label for="masculino">Masculino</label>
+            <input type="radio" name="sexo" id="feminino" value="F">
+            <label for="feminino">Feminino</label>
+            </p>
+            <input id="botão" type="button" value="Verificar Idade" onclick="verificarIdade()">
+        </div>
+        <div id="resultado">
+            <p id="textoresultado">
+                Preencha os dados acima e clique em verificar idade.
+            </p>
+
+            <img src="" alt="" id="img" width="250px">
+            
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Exercício desenvolvido por Marcos Bandeira</p>
+    </footer>
+
+    <script>
+        function verificarIdade(){
+            var data = new Date()
+            var anoatual = data.getFullYear()
+            var anonascimento = document.getElementById('anonascimento').value
+            var sexo = document.getElementsByName('sexo')
+            var idade = anoatual - anonascimento
+            var genero = ''
+            var img = document.getElementById('img')
+
+            if(anonascimento.length == 0 || Number(anonascimento) > anoatual || Number(anonascimento) < 1900){
+                alert('[ERRO] Verifique os dados e tente novamente!')
+                return
+            }
+
+            if(sexo[0].checked){
+                genero = 'Homem'
+                document.body.style.backgroundColor = 'rgba(0, 0, 255, 0.555)'
+                if(idade >=0 && idade < 14){
+                    //Criança
+                    img.src = "criançamenino.png"
+                } else if (idade < 40){
+                    //Jovem
+                    img.src = "homemnovo.png"
+                }  else {
+                    //Idoso
+                    img.src = "velho.png"
+                }
+            } else if (sexo[1].checked){
+                genero = 'Mulher'
+                document.body.style.backgroundColor = 'rgba(255, 0, 255, 0.555)'
+                if(idade >=0 && idade < 14){
+                    //Criança
+                    img.src = "criançamenina.png"
+                } else if (idade < 40){
+                    //Jovem
+                    img.src = "mulhernova.png"
+                } else {
+                    //Idoso
+                    img.src = "velha.png"
+                }
+            }
+
+            var textoresultado = document.getElementById('textoresultado')
+            textoresultado.innerHTML = `Detectamos ${genero} com ${idade} anos.`
+        }
+    </script>
+</body>
+</html>

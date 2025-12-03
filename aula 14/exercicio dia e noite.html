@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgba(0, 0, 255, 0.568);
+            font: normal 15pt Arial, sans-serif;
+        }
+        header{
+            color:white;
+            text-align: center;
+
+        }
+        section{
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            width: 500px;
+            margin: auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.356);
+
+        }
+        h1{
+            margin-bottom: 20px;
+        }
+        #msg{
+            text-align: center;
+            font-size: 20pt;
+            margin-bottom: 20px;
+        }
+        #foto{
+            text-align: center;
+            margin-top: 20px;
+        }
+        #imagem{
+            border-radius: 200px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.733);
+        }
+        footer{
+            text-align: center;
+            font-size: 10pt;
+            margin-top: 10px;
+            color:white;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body onload="carregar()">
+    <header>
+        <h1>Hora do Dia</h1>
+    </header>
+
+    <section>
+        <div id="msg">
+            Aqui vai aparecer a mensagem
+        </div>
+        <div id="foto">
+            <img src="manhã.png" alt="Foto do dia" id="imagem" width="250px">
+        </div >
+    </section>
+
+    <footer>
+        <p>&copy; Exercício desenvolvido por Marcos Bandeira</p>
+    </footer>
+
+    <script>
+        // Código JavaScript pode ser adicionado aqui
+        function carregar(){
+        
+            var msg = document.getElementById("msg")
+            var img = document.getElementById("imagem")
+            var data = new Date()
+            var hora = data.getHours()
+            if(hora >=0 && hora <12){
+                //Bom dia
+                img.src = "manhã.png"
+                document.body.style.background = "rgba(255, 223, 128, 0.568)"
+            } else if(hora >=12 && hora <=18){
+                //Boa tarde
+                img.src = "tarde.png"
+                document.body.style.background = "rgba(255, 140, 0, 0.568)"
+            } else {
+                //Boa noite
+                img.src = "noite.png"
+                document.body.style.background = "rgba(0, 0, 128, 0.568)"
+            }
+            msg.innerHTML = `Agora são ${hora} horas.`
+        }
+    </script>
+</body>
+</html>
