@@ -40,3 +40,18 @@ li {
     margin: 0.5rem 0;
     color: #e9e2ba;
 }
+
+button {
+    display: block;
+    margin: 2rem auto;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #1f1c17;
+    background-color: #fce563;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
